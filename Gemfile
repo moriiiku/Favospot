@@ -76,3 +76,9 @@ gem 'acts-as-taggable-on', '~> 6.0'
 
 gem 'ransack'
 #検索バー
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+#MySQL

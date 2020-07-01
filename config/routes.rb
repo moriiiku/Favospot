@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'top/top'
+	root to: 'top#top'
+
   resources :users
   resources :posts
   devise_for :admins

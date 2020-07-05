@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   resources :posts
 
+  get 'posts/top'
+  post 'contacts/new'
+
   	get 'top/infomation'
   	get 'top/contact' # 消すよ
 	root 'top#top'

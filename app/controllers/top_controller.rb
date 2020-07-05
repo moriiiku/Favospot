@@ -5,7 +5,5 @@ class TopController < ApplicationController
   def infomation
   end
 
-  def contact
-  end
-  # 消すよ
+
 end

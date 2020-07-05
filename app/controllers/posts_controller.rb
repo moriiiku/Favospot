@@ -1,14 +1,22 @@
 class PostsController < ApplicationController
   def index
   	@posts = Post.all
+    @user = current_user
+    @post = Post.new
   end
+
+    def top
+    @posts = Post.all
+    end
 
   def show
   	@post = Post.find(params[:id])
+    #post_image = Post_image.find(params[:id])
   end
 
   def new
   	@post = Post.new
+    @post.post_images.build
   end
 
   def create
@@ -36,6 +44,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :post_image)
+    params.require(:post).permit(:title, :body, post_images_attributes: [:post_image]) #?
   end
 end

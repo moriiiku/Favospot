@@ -15,16 +15,18 @@
   </head>
 
   <body>
-
-    <header class="border-bottom mb-5", style="background-color: rgba(190,176,152,0.4);">
+    <header class="border-bottom mb-3", style="background-color: #F5F5F5;">
               <nav class="navbar navbar-expand-lg">
-                  <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item m-4">
+
+                 
+
+                  <ul class="navbar-nav">
+                    <li class="nav-item m-3">
                       <span><%= link_to image_tag('logo.png'), "/" %></span>
                     </li>
                   </ul>
 
-
+                  
                   <ul class="nav navbar-nav navbar-right">
                     <% if user_signed_in? %>
                      
@@ -60,7 +62,7 @@
                       <li class="mr-4"><%= link_to 'INFO', top_infomation_path, class: "page-link text-dark d-inline-block btn" %></li>
 
 
-                      <li class="mr-4"><%= link_to 'CONTACT', root_path, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li class="mr-4"><%= link_to 'CONTACT',  contacts_new_path, class: "page-link text-dark d-inline-block btn" %></li>
 
                       <li class="mr-4"><%= link_to 'Signup', new_user_registration_path, class: "page-link text-dark d-inline-block btn" %></li>
                       <li class="mr-4"><%= link_to 'Login', new_user_session_path, class: "page-link text-dark d-inline-block btn" %></li>
@@ -80,11 +82,68 @@
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
-<div>
+    <div>
 
+        <%= yield %>
 
-    <%= yield %>
-
-</div>
+    </div>
   </body>
+
+  <!-- Custom styles for this template -->
+<link href="sticky-footer.css" rel="stylesheet">
+    <footer class="footer", style="background-color: #F5F5F5;">
+      <div class="container">
+
+              <nav class="navbar navbar-expand-lg">
+                  <ul class="nav navbar-nav mr-auto">
+                    
+                  </ul>
+
+
+                  <ul class="nav">
+                    <% if user_signed_in? %>
+                      <li class="mr-4"><%= link_to 'HOME', root_path, class: "page-link text-dark d-inline-block btn" %></li>
+
+                      <li class="mr-4"><%= link_to 'INFO', top_infomation_path, class: "page-link text-dark d-inline-block btn" %></li>
+
+                      <li class="mr-4"><%= link_to 'CONTACT',  contacts_new_path, class: "page-link text-dark d-inline-block btn" %></li>
+
+                      <li class="mr-4"><%= link_to 'MY PAGE', user_path(current_user.id), class: "page-link text-dark d-inline-block btn" %></li>
+
+                      <li class="mr-4 animate__pulse"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li>
+                        <!-- ここに検索記述 -->
+                      </li>
+                    <% elsif admin_signed_in? %>
+                      <li class="mr-4"><%= link_to '商品一覧', admins_products_path, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li class="mr-4"><%= link_to '会員一覧', admins_members_path, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li class="mr-4"><%= link_to '注文履歴一覧', admins_orders_path, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li class="mr-4"><%= link_to 'ジャンル一覧', admins_product_genres_path, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li class="mr-4"><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li>
+                        <%= form_tag(admins_search_path, :method => 'get') do %>
+                          <%= text_field_tag :search %>
+                          <%= select_tag(:option, options_for_select([["member", "1"],["product","2"]])) %>
+                          <%= submit_tag '検索', :name => nil %>
+                        <% end %>
+                      </li>
+                    <% else %>
+                      <li class="mr-4"><%= link_to 'HOME', root_path, class: "page-link text-dark d-inline-block btn" %></li>
+
+                      <li class="mr-4"><%= link_to 'INFO', top_infomation_path, class: "page-link text-dark d-inline-block btn" %></li>
+
+
+                      <li class="mr-4"><%= link_to 'CONTACT',  contacts_new_path, class: "page-link text-dark d-inline-block btn" %></li>
+
+                      <li class="mr-4"><%= link_to 'Signup', new_user_registration_path, class: "page-link text-dark d-inline-block btn" %></li>
+                      <li class="mr-4"><%= link_to 'Login', new_user_session_path, class: "page-link text-dark d-inline-block btn" %></li>
+                    <% end %>
+
+                  </ul>
+              </nav>
+
+
+        <p class="text-center">© All rights recerved by Infratop.Inc.</p>
+      </div>
+    </footer>
 </html>

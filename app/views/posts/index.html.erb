@@ -13,31 +13,47 @@
   </div>
 </section>
 
+
 <section class="section">
   <div class="container">
     <div class="columns is-multiline">
-      <% @posts.each do |post| %>
+      <% @user.posts.each do |post| %>
         <div class="column is-4">
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
                 <%= link_to post_path(post) do %>
-                  <%= attachment_image_tag post, :post_image %>
+                <% post.post_images.each do |img| %>
+                  <%= attachment_image_tag img, :post_image, fallback: "noimage.png" %>
+                <% end %>
                 <% end %>
               </figure>
             </div>
             <div class="card-content">
               <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <%= attachment_image_tag post.user, :profile_image, fallback: "noimage.png", class: "profile_image" %>
-                  </figure>
-                </div>
                 <div class="media-content">
-                  <div class="title"><%=link_to post.user.username, user_path(post.user) %></div>
+                  <%= link_to post_path(post), class: "panel-block" do %>
+                    <span class="panel-icon">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    この投稿を見る
+                  <% end %>
+                  <% if @user.id == current_user.id %>
+                    <%= link_to edit_post_path(post), class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      この投稿を編集する
+                    <% end %>
+                    <%= link_to post_path(post), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-trash"></i>
+                      </span>
+                      この投稿を削除する
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
-
               <div class="content">
                 <time><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
               </div>
@@ -48,3 +64,5 @@
     </div>
   </div>
 </section>
+
+

@@ -38,10 +38,15 @@
             <%= f.text_area :body, class: "textarea" %>
           </div>
 
-          <div class="field">
-            <%= f.label :image, "写真", class: "label" %>
-            <%= f.attachment_field :image, class: "input" %>
-          </div>
+          <%= f.fields_for :post_images do |image| %>
+
+              <div class="field">
+                <%= image_tag(image.object.post_image) %>
+                <%= image.label :post_image, "写真", class: "label" %>
+                <%= image.attachment_field :post_image, class: "input" %>
+              </div>
+            <% end %>
+
 
           <%= f.submit '投稿', class: "button is-success" %>
         <% end %>

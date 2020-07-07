@@ -27,6 +27,9 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-6">
+
+
+
         <%= form_for @post do |f| %>
           <div class="field">
             <%= f.label :title, "SPOT", class: "label" %>
@@ -38,18 +41,56 @@
             <%= f.text_area :body, class: "textarea" %>
           </div>
 
-          <%= f.fields_for :post_images do |image| %>
-
-              <div class="field">
-                <%= image_tag(image.object.post_image) %>
-                <%= image.label :post_image, "写真", class: "label" %>
-                <%= image.attachment_field :post_image, class: "input" %>
-              </div>
-            <% end %>
-
 
           <%= f.submit '投稿', class: "button is-success" %>
+
+
+
+
         <% end %>
+
+
+                  <% @post.post_images.each do |img| %>
+                    
+
+                      <%= attachment_image_tag img, :post_image, fallback: "noimage.png", size: '400x320' %>
+
+                      <%= form_for(img,url:post_post_image_path(@post,img), method: :patch) do |f| %>
+
+                        
+
+                        <div class="field">
+                      
+
+                      <%= f.attachment_field :post_image, class: "input" %>
+                        </div>
+
+                        <%= f.submit '写真の変更', class: "button is-success" %>
+
+                      <% end %>
+
+                      
+
+
+                  <% end %>
+
+
+          <br>
+          </br>
+
+<br>
+          </br>
+<br>
+          </br>
+
+<br>
+          </br>
+
+          <br>
+          </br>
+
+
+            
       </div>
     </div>
   </div>

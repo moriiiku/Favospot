@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'contacts/new'
   get 'contacts/create'
   devise_for :admins
@@ -6,14 +7,16 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :new, :create, :destroy, :edit, :update]
   delete 'destroy_user', to: 'users#destroy'
 
-  resources :posts
+  resources :posts do
+    resources :post_images
+  end
 
-  get 'posts/top'
+  get 'posts/all' #これは削除
   post 'contacts/new'
 
   	get 'top/infomation'
   	get 'top/contact' # 消すよ
-	root 'top#top'
+	root 'posts#index'
 
 
   

@@ -1,7 +1,14 @@
 <h1>Contacts#new</h1>
 <p>Find me in app/views/contacts/new.html.erb</p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-4 offset-4 table-acti h3 text-center">Contact</div>
+    <div class="col-4 offset-4 h5 text-center">SAY HI!!</div>
+  </div>
+</div>
 
+  <div class="container">
 <%= form_for contacts_new_path @contact do |f| %>
 
   <div class="form-group">
@@ -22,3 +29,4 @@
   <%= f.submit '送信' %>
 
 <% end %>
+  </div>

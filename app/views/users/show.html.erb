@@ -21,9 +21,14 @@
                     <div class="column is-4">
                       <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
                         <%= attachment_image_tag @user, :profile_image, fallback: "noimage.png", class: "profile_image is-rounded",  format: 'jpeg', class: " pull-left profile-img", fallback: "noimage.png", size:"100x100" %>
-                        <div class="float-right">
+
+                        <% if @user.id == current_user.id %>
+                              <div class="float-right">
                         <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
                       </div>
+                                この投稿を編集する
+                              <% end %>
+                        
                       </figure>
 
                       

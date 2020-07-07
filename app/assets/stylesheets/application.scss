@@ -15,6 +15,18 @@
  */
 @import "bootstrap";
 
+.profile_image {
+ border-radius: 50%;
+}
+
+.main-image {
+  height: 940px;
+  background-image: url(koen.jpg);
+  background-repeat: no-repeat; 
+  /*サイズが余ったら繰り返すのを防ぐ-- */
+  background-size: contain;
+}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */

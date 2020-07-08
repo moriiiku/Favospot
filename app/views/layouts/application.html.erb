@@ -82,15 +82,16 @@
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
-    <div>
+    <div id='contents'>
 
         <%= yield %>
 
     </div>
   </body>
-
+<% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
   <!-- Custom styles for this template -->
-<link href="sticky-footer.css" rel="stylesheet">
     <footer class="footer", style="background-color: #F5F5F5;">
       <div class="container">
 
@@ -143,7 +144,7 @@
               </nav>
 
 
-        <p class="text-center">© All rights recerved by Infratop.Inc.</p>
+        <p class="text-center">© All rights recerved by Molique.</p>
       </div>
     </footer>
 </html>

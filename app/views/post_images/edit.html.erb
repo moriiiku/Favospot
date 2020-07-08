@@ -1,0 +1,34 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-5 offset-2 table-active h4 text-center">SPOT PHOTO EDIT</div>
+	</div>
+
+	<section class="section">
+    	<div class="container">
+      		<div class="columns is-centered">
+        		<div class="column is-6">
+
+					<% @post.post_images.each do |img| %>
+		              <%= attachment_image_tag img, :post_image, fallback: "noimage.png", size: '400x320' %>
+		            <%= form_for(img,url:post_post_image_path(@post,img), method: :patch) do |f| %>
+		              <div class="field">
+		                <%= f.attachment_field :post_image, class: "input" %>
+		              </div>
+		                <%= f.submit '写真の変更', class: "button is-success" %>
+		            <% end %>
+		          <% end %>
+		          <% if current_user && @post.user.id == current_user.id %>
+                    <%= link_to "編集に戻る", edit_post_path(@post), class: "button is-success" %>
+                  <% end %>
+
+				</div>
+      		</div>
+    	</div>
+  	</section>
+</div>
+
+
+
+<h1>Post_images#edit</h1>
+<p>Find me in app/views/posts/edit.html.erb</p>

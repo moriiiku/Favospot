@@ -1,9 +1,22 @@
 ja:
   activerecord:
-    models: 
-      title: タイトル
-      body: 説明文
-    attributes: 
+    models:
+      post: 投稿
+      user: ユーザー
+      post_image: 投稿画像
+    attributes:
+      post/post_images:
+        name: post_images
       post:
-      title: タイトル
-      body: 内容
+        title: タイトル
+        body: 説明文
+      post_image:
+        post_image: 投稿画像
+      user:
+        title: タイトル
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶

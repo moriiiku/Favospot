@@ -1,0 +1,12 @@
+<div style="padding-top: 10px;">
+          <% if @post.errors.any? %>
+            <div class="notification is-danger">
+              <h3><%= pluralize(@post.errors.count, "error") %></h3>
+              <h6>下記のエラーを直して再度投稿してください！</h6>
+              <ul>
+                <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>

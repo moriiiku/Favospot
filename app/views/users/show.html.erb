@@ -2,67 +2,70 @@
 <div class="row">
   <div class="col-md-10">
 
-
-          <section class="hero is-success">
-            <div class="hero-body">
-              <div class="container">
-                <div class="row">
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <div class="row">
             <div class="col-3 offset-0 table-active h4 text-center">MY PAGE</div>
+          </div>
+        </div>
       </div>
-              </div>
-            </div>
-          </section>
+    </section>
 
-          <section class="section">
-            <div class="container">
-              <div class="columns is-centered">
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="columns is-centered">
+
+              <div class="column is-4">
+                <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
+                  <%= attachment_image_tag @user, :profile_image, fallback: "noimage.png", class: "profile_image is-rounded",  format: 'jpeg', class: " pull-left profile-img", fallback: "noimage.png", size:"100x100" %>
+
+                  <% if @user.id == current_user.id %>
+                    <div class="float-right">
+                      <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
+                    </div>
+                  <% end %>
+                </figure>
+
+              </div>
+                <tr>
+                  <td>
+                    <strong><%= @user.user_name %></strong>
+                  </td>
+                </tr>
+
+
+
                 <div class="column is-8">
-                  <div class="columns is-centered">
-                    <div class="column is-4">
-                      <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
-                        <%= attachment_image_tag @user, :profile_image, fallback: "noimage.png", class: "profile_image is-rounded",  format: 'jpeg', class: " pull-left profile-img", fallback: "noimage.png", size:"100x100" %>
-
-                        <% if @user.id == current_user.id %>
-                              <div class="float-right">
-                        <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
-                      </div>
-                                この投稿を編集する
-                              <% end %>
-                        
-                      </figure>
-
-                      
-
-                    </div>
-                    <div class="column is-8">
-                      <table class="table is-fullwidth">
-                        <tr>
-                          <td class="is-size-4">
-                            <strong><%= @user.user_name %></strong>
-                          </td>
-                          <% if @user.id == current_user.id %>
-                          <td class="is-size-4">
-                            <%= @user.email %>
-                          </td>
-                          <td>
-                              
-                          </td>
-                          <% end %>
-                        </tr>
-                      </table>
-                      <table class="table is-fullwidth">
-                        <tr>
-                          <td>
-                            <%= @user.profile %>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
+                  <table class="table is-fullwidth">
+                      <tr>
+                        <td>
+                          <%= simple_format @user.profile %>
+                        </td>
+                        <td>
+                        </td>
+                      </tr>
+                  </table>
                 </div>
-              </div>
+
             </div>
-          </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-3 offset-0 table-active h4 text-center">MY SPOT</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
           <section class="section">
             <div class="container">
@@ -125,4 +128,31 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 
+<table class="table is-fullwidth">
+                        <tr>
+                          <td>
+                            <%= @user.profile %>
+                          </td>
+                        </tr>
+                      </table>
+
+
+
+
+                                    <div class="column is-8">
+                <table class="table is-fullwidth">
+                  <tr>
+                    <td>
+                      <strong><%= @user.user_name %></strong>
+                    </td>
+                    <% if @user.id == current_user.id %>
+                      <td>
+                        <%= @user.profile %>
+                      </td>
+                    <% end %>
+                    <td>
+                    </td>
+                  </tr>
+                </table>
+              </div>
 

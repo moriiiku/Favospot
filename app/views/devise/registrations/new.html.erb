@@ -3,69 +3,48 @@
 
 
 
-<section class="hero is-info">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Sign up
-      </h1>
-    </div>
-  </div>
-</section>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h2>Sign up</h2>
 
-<section class="section">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-5">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
+        <div class="form-group">
+            <%= f.label :profile_image, "プロフィール画像", class: "label" %>
+            <p class="control has-icons-left">
+            <%= f.attachment_field :profile_image, autofocus: true, autocomplete: "profile_image", :placeholder => "profile_image", class: "input" %>
+            </p>
+          </div>
 
-        <div class="field">
+
+        <div class="form-group">
           <%= f.label :username, class: "label" %>
-          <p class="control has-icons-left">
-            <%= f.text_field :user_name, autofocus: true, autocomplete: "email", :placeholder => "username", class: "input" %>
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
+          <%= f.text_field :user_name, autofocus: true, autocomplete: "email", class: "input", class: "form-control"  %>
           </p>
         </div>
 
-        <div class="field">
+        <div class="form-group">
           <%= f.label :email, class: "label" %>
-          <p class="control has-icons-left">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "email", class: "input" %>
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </p>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", class: "form-control"  %>
         </div>
 
-        <div class="field">
+        <div class="form-group">
           <%= f.label :password, class: "label" %>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
-          <p class="control has-icons-left">
-          <%= f.password_field :password, autocomplete: "new-password", :placeholder => "password", class: "input" %>
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
+          <%= f.password_field :password, autocomplete: "new-password", class: "input", class: "form-control"  %>
         </div>
 
-        <div class="field">
+        <div class="form-group">
           <%= f.label :password_confirmation, class: "label" %>
-          <p class="control has-icons-left">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "password confirmation", class: "input" %>
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", class: "form-control"  %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Sign up", class: "button is-success" %>
+          <%= f.submit "Sign up", class: "btn btn-primary" %>
         </div>
         <% end %>
 
@@ -73,6 +52,8 @@
       </div>
     </div>
   </div>
+
+
 
   <div class="columns is-centered">
     <div class="column">

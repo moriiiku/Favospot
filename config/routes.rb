@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :post_images
   end
 
+  get 'post_image/edit' #これは削除
+
   get 'posts/all' #これは削除
   post 'contacts/new'
 

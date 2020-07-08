@@ -3,57 +3,46 @@
 
     <div class="container">
       <div class="row">
-            <div class="col-4 offset-1 table-active h4 text-center">POST</div>
+            <div class="col-4 offset-1 table-active h4 text-center">NEWSPOT</div>
       </div>
 
+        <%= render 'error', post: @post %>
 
-
-        <div style="padding-top: 80px;">
-          <% if @post.errors.any? %>
-            <div class="notification is-danger">
-              <h3><%= pluralize(@post.errors.count, "error") %></h3>
-              <h6>下記のエラーを直して再度投稿してください！</h6>
-              <ul>
-                <% @post.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+        
 
           <section class="section">
             <div class="container">
-              <div class="columns is-centered">
-                <div class="column is-6">
+
+
                   <%= form_for @post do |f| %>
                     <div class="field">
-                      <%= f.label :title, "タイトル", style: "width: 15%;", class: "label" %>
+                      <%= f.label :title, "SPOT名", style: "width: 15%;", class: "label" %>
                       <%= f.text_field :title, style: "width: 45%;", class: "input" %>
                     </div>
 
                     <%= f.fields_for :post_images do |img| %>
 
                         <div class="field">
-                          <%= img.label :post_image, "写真", style: "width: 15%;", class: "label" %>
+                          <%= img.label :post_image, "PHOTO", style: "width: 15%;", class: "label" %>
                           <%= img.attachment_field :post_image, class: "input" %>
                         </div>
                       <% end %>
 
                     <div class="field">
-                      <%= f.label :body, "内容", style: "width: 15%;", class: "label" %>
+                      <%= f.label :body, "説明文", style: "width: 15%;", class: "label" %>
                       <%= f.text_area :body, style: "width: 60%; height: 120px;", class: "textarea" %>
                     </div>
 
                     <div class="field">
                       <%= f.label :place, "所在地", style: "width: 15%;", class: "label" %>
-                      <%= f.text_field :place, style: "width: 60%; height: 30px;", class: "textarea" %>
+                      <%= f.text_field :place, style: "width: 60%; height: 30px;", class: "textfield" %>
                     </div>
 
                     <%= f.submit '投稿', class: "button is-success" %>
 
                   <% end %>
-                </div>
-              </div>
+
+
             </div>
           </section>
         </div>

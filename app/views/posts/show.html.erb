@@ -1,46 +1,41 @@
 <div class="row">
   <div class="col-md-10">
-
-
-
-        <div class="container">
-          <h1 class="title">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"><%= @post.title %></p>
-              </div>
-            </div>
-          </h1>
-        </div>
-
-            <div class="container">
-              <article class="panel is-link">
-                by<%= link_to user_path(@post.user), class: "panel-block" do %>
-                  <span class="panel-icon">
-                    <i class="fas fa-user" aria-hidden="true"><%= @post.user.user_name %></i>
-                  </span>
-                <% end %>さん
-              </article>
-
-            </div>
-
-
-
-
-
-
-
+    <div class="container">
+      <h1>
+        <p><%= @post.title %></p>
+      </h1>
+    </div>
 
     <section class="section">
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-7">
+
             <div class="card">
               <div class="card-image">
+
                 <figure class="image is-4by3">
                   <% @post.post_images.each do |img| %>
                     <%= attachment_image_tag img, :post_image, size: '400x320' %>
                   <% end %>
+
+
+
+                  <td> <!-- いいね機能 -->
+                <% if current_user.already_favorited?(@post) %>
+                  <%= link_to post_favorites_path(@post), method: :delete do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
+                  <%= @post.favorites.count %>
+                <% else %>
+                  <%= link_to post_favorites_path(@post), method: :post do %>
+                    <i class="far fa-heart"></i>
+                  <% end %>
+                  <%= @post.favorites.count %>
+                <% end %>
+              </td>
+
+
 
                 </figure>
               </div>
@@ -53,19 +48,35 @@
                       <td><%= simple_format @post.body %></td>
                     </tr>
                     <tr>
-                      <th>SPOT</th>
+                      <th>所在地</th>
+                      <td><%= simple_format @post.place %></td>
+                      <td>
+                        <div class="float-right">
+                          <% if current_user && @post.user.id == current_user.id %>
+                            <%= link_to "写真の変更", edit_post_post_image_path(@post), class: "button is-success" %>
+
+                            <%= link_to "編集", edit_post_path(@post), class: "button is-success" %>
+
+                            <%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "button is-success"  %>
+                          <% end %>
+                        </div>
+                      </td>
                     </tr>
                   </table>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="float-right">
-          <% if @post.user.id == current_user.id %>
-            <%= link_to "編集", edit_post_path(@post), class: "button is-success" %>
-          <% end %>
+
+        <div class="container">
+          <article class="panel is-link">
+            Favospot by<%= link_to user_path(@post.user), class: "panel-block" do %>
+              <span class="panel-icon">
+                <i class="fas fa-user" aria-hidden="true"><%= @post.user.user_name %></i>
+              </span>
+            <% end %>さん
+          </article>
         </div>
       </div>
     </section>
@@ -79,21 +90,5 @@
 
 
 
-<div class="column is-4">
-            <article class="panel is-link">
-              <p class="panel-heading">
-                By <%= @post.user.user_name %>
-              </p>
-              <div class="panel-block">
-                <p class="control">
-                  <%= @post.user.profile %>
-                </p>
-              </div>
-              <%= link_to user_path(@post.user), class: "panel-block" do %>
-                <span class="panel-icon">
-                  <i class="fas fa-user" aria-hidden="true"></i>
-                </span>
-                <%= @post.user.user_name %> さんのページへ
-              <% end %>
-            </article>
-          </div>
+
+

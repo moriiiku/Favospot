@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show] #後で, :show
+  before_action :authenticate_user!, except: [:index, :show]
   def index
   	@posts = Post.all
 
@@ -54,6 +54,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :place, post_images_attributes: [:post_image]) #?
+    params.require(:post).permit(:title, :body, :place, post_images_attributes: [:post_image])
   end
 end

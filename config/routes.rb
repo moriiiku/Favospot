@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :post_images
+    resource :favorites, only: [:create, :destroy]
   end
+
 
   get 'post_image/edit' #これは削除
 

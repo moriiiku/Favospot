@@ -67,65 +67,78 @@
       </div>
     </section>
 
-          <section class="section">
-            <div class="container">
-              <div class="columns is-multiline">
-                <% @user.posts.each do |post| %>
-                  <div class="column is-4">
-                    <div class="card">
-                      <div class="card-image">
-                        <figure class="image is-4by3">
-                          <%= link_to post_path(post) do %>
-                            <% post.post_images.each do |img| %>
-                              <%= attachment_image_tag img, :post_image, fallback: "noimage.png", size: '400x320' %>
-                            <% end %>
+      <section class="section">
+        <div class="container">
+          <div class="columns is-multiline">
+            <% @user.posts.each do |post| %>
+              <div class="column is-4">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <%= link_to post_path(post) do %>
+                        <% post.post_images.each do |img| %>
+                          <%= attachment_image_tag img, :post_image, fallback: "noimage.png", size: '400x320' %>
+                        <% end %>
+                      <% end %>
+                    </figure>
+                  </div>
+
+                  <td> <!-- いいね機能 -->
+                    <% if current_user.already_favorited?(post) %>
+                      <%= link_to post_favorites_path(post), method: :delete do %>
+                        <i class="fas fa-heart"></i>
+                      <% end %>
+                      <%= post.favorites.count %>
+                    <% else %>
+                      <%= link_to post_favorites_path(post), method: :post do %>
+                        <i class="far fa-heart"></i>
+                      <% end %>
+                      <%= post.favorites.count %>
+                    <% end %>
+                  </td>
+
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <%= link_to post_path(post), class: "panel-block" do %>
+                          <span class="panel-icon">
+                            <i class="fas fa-book" aria-hidden="true"></i>
+                          </span>
+                          この投稿を見る
+                        <% end %>
+                        <% if @user.id == current_user.id %>
+                          <%= link_to edit_post_path(post), class: "panel-block" do %>
+                            <span class="panel-icon">
+                              <i class="fas fa-edit"></i>
+                            </span>
+                            この投稿を編集する
                           <% end %>
-                        </figure>
-                      </div>
-                      <div class="card-content">
-                        <div class="media">
-                          <div class="media-content">
-                            <%= link_to post_path(post), class: "panel-block" do %>
-                              <span class="panel-icon">
-                                <i class="fas fa-book" aria-hidden="true"></i>
-                              </span>
-                              この投稿を見る
-                            <% end %>
-                            <% if @user.id == current_user.id %>
-                              <%= link_to edit_post_path(post), class: "panel-block" do %>
-                                <span class="panel-icon">
-                                  <i class="fas fa-edit"></i>
-                                </span>
-                                この投稿を編集する
-                              <% end %>
-                              <%= link_to post_path(post), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
-                                <span class="panel-icon">
-                                  <i class="fas fa-trash"></i>
-                                </span>
-                                この投稿を削除する
-                              <% end %>
-                            <% end %>
-                          </div>
-                        </div>
-                        <div class="content">
-                          <time><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
-                        </div>
+                          <%= link_to post_path(post), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                            <span class="panel-icon">
+                              <i class="fas fa-trash"></i>
+                            </span>
+                            この投稿を削除する
+                          <% end %>
+                        <% end %>
                       </div>
                     </div>
+                    <div class="content">
+                      <time><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+                    </div>
                   </div>
-                <% end %>
+                </div>
               </div>
-            </div>
-          </section>
-</div>
-  <div class="row">
-      <%= render 'posts/sidebar', user: @user, post: @post %>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="row">
+        <%= render 'posts/sidebar', user: @user, post: @post %>
+    </div>
   </div>
-</div>
 
 
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
 
 
 <table class="table is-fullwidth">

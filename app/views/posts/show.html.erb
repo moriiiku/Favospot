@@ -16,7 +16,9 @@
 
                 <figure class="image is-4by3">
                   <% @post.post_images.each do |img| %>
-                    <%= attachment_image_tag img, :post_image, size: '400x320' %>
+                  <div class="postimage">
+                    <%= attachment_image_tag img, :post_image, class: "postimage" %>
+                  </div>
                   <% end %>
 
 

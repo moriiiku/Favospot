@@ -19,3 +19,13 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery_ujs
+
+
+$(function() {
+  $('#back a').on('click',function(event){
+    $('footer, html').animate({
+      scrollTop:0
+    }, 800);
+    event.preventDefault();
+  });
+});

@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+@charset "UTF-8";
 @import "bootstrap";
 
 .profile_image {
@@ -91,4 +92,13 @@ body {
   height: 400px;
   width: auto;
 
+}
+
+#back {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+#back img {
+  width: 50px;
 }

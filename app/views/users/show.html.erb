@@ -77,6 +77,7 @@
                     <figure class="image is-4by3">
                       <%= link_to post_path(post) do %>
                         <% post.post_images.each do |img| %>
+
                           <%= attachment_image_tag img, :post_image, fallback: "noimage.png", class: "postimage" %>
                         <% end %>
                       <% end %>

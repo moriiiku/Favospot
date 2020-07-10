@@ -39,6 +39,24 @@
 
 
 
+
+
+                  <td> <!-- いいね機能 -->
+                <% if current_user.already_favorited?(@post) %>
+                  <%= link_to post_favorites_path(@post), method: :delete do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
+                  <%= @post.favorites.count %>
+                <% else %>
+                  <%= link_to post_favorites_path(@post), method: :post do %>
+                    <i class="far fa-heart"></i>
+                  <% end %>
+                  <%= @post.favorites.count %>
+                <% end %>
+              </td>
+
+
+
                 </figure>
               </div>
               <div class="card-content">
@@ -87,8 +105,6 @@
           <%= render 'posts/sidebar', user: @user, post: @post %>
     </div>
 </div>
-
-
 
 
 

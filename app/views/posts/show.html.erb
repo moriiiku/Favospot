@@ -16,8 +16,28 @@
 
                 <figure class="image is-4by3">
                   <% @post.post_images.each do |img| %>
-                    <%= attachment_image_tag img, :post_image, size: '400x320' %>
+                  <div class="postimage">
+                    <%= attachment_image_tag img, :post_image, class: "postimage" %>
+                  </div>
                   <% end %>
+
+
+
+                  <td> <!-- いいね機能 -->
+                <% if current_user.already_favorited?(@post) %>
+                  <%= link_to post_favorites_path(@post), method: :delete do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
+                  <%= @post.favorites.count %>
+                <% else %>
+                  <%= link_to post_favorites_path(@post), method: :post do %>
+                    <i class="far fa-heart"></i>
+                  <% end %>
+                  <%= @post.favorites.count %>
+                <% end %>
+              </td>
+
+
 
 
 
@@ -85,10 +105,6 @@
           <%= render 'posts/sidebar', user: @user, post: @post %>
     </div>
 </div>
-
-
-
-
 
 
 

@@ -1,19 +1,22 @@
 <div class="row">
   <div class="col-md-10">
-    <div class="container">
-      <h1>
-        <p><%= @post.title %></p>
-      </h1>
-    </div>
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <div class="row">
+            <strong><h2><%= @post.title %></h2></strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section class="section">
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-7">
-
             <div class="card">
               <div class="card-image">
-
                 <figure class="image is-4by3">
                   <% @post.post_images.each do |img| %>
                   <div class="postimage">
@@ -21,67 +24,56 @@
                   </div>
                   <% end %>
 
-
-
                   <td> <!-- いいね機能 -->
-                <% if current_user.already_favorited?(@post) %>
-                  <%= link_to post_favorites_path(@post), method: :delete do %>
-                    <i class="fas fa-heart"></i>
-                  <% end %>
-                  <%= @post.favorites.count %>
-                <% else %>
-                  <%= link_to post_favorites_path(@post), method: :post do %>
-                    <i class="far fa-heart"></i>
-                  <% end %>
-                  <%= @post.favorites.count %>
-                <% end %>
-              </td>
+                    <% if current_user.already_favorited?(@post) %>
+                      <%= link_to post_favorites_path(@post), method: :delete do %>
+                        <i class="fas fa-heart"></i>
+                      <% end %>
+                    <%= @post.favorites.count %>
+                    <% else %>
+                      <%= link_to post_favorites_path(@post), method: :post do %>
+                        <i class="far fa-heart"></i>
+                      <% end %>
+                    <%= @post.favorites.count %>
+                    <% end %>
+                  </td>
 
+                  <td>
+                    <div class="float-right">
+                      <% if current_user && @post.user.id == current_user.id %>
+                        <%= link_to "写真の変更", edit_post_post_image_path(@post), class: "button is-success" %>
 
+                        <%= link_to "編集", edit_post_path(@post), class: "button is-success" %>
 
-
-
-                  <td> <!-- いいね機能 -->
-                <% if current_user.already_favorited?(@post) %>
-                  <%= link_to post_favorites_path(@post), method: :delete do %>
-                    <i class="fas fa-heart"></i>
-                  <% end %>
-                  <%= @post.favorites.count %>
-                <% else %>
-                  <%= link_to post_favorites_path(@post), method: :post do %>
-                    <i class="far fa-heart"></i>
-                  <% end %>
-                  <%= @post.favorites.count %>
-                <% end %>
-              </td>
-
-
-
+                        <%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "button is-success"  %>
+                      <% end %>
+                    </div>
+                  </td>
                 </figure>
               </div>
               <div class="card-content">
-
                 <div class="content">
                   <table class="table is-narrow">
-
-                    <tr>
-                      <td><%= simple_format @post.body %></td>
-                    </tr>
-                    <tr>
-                      <th>所在地</th>
-                      <td><%= simple_format @post.place %></td>
-                      <td>
-                        <div class="float-right">
-                          <% if current_user && @post.user.id == current_user.id %>
-                            <%= link_to "写真の変更", edit_post_post_image_path(@post), class: "button is-success" %>
-
-                            <%= link_to "編集", edit_post_path(@post), class: "button is-success" %>
-
-                            <%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "button is-success"  %>
-                          <% end %>
-                        </div>
-                      </td>
-                    </tr>
+                    <div>
+                      <table class="table is-fullwidth">
+                        <tr>
+                          <td align="right" nowrap>
+                            <strong class="text-center">説明文:</strong>
+                          </td>
+                          <td class="col-5 offset-1">
+                            <%= simple_format @post.body %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="right" nowrap>
+                            <strong>所在地:</strong>
+                          </td>
+                          <td>
+                            <%= simple_format @post.place %>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
                   </table>
                 </div>
               </div>
@@ -100,11 +92,21 @@
         </div>
       </div>
     </section>
-  </div>
+
     <div class="row">
           <%= render 'posts/sidebar', user: @user, post: @post %>
     </div>
+  </div>
 </div>
+
+
+<table class="table is-fullwidth">
+  <tr>
+    <td>
+      
+    </td>
+  </tr>
+</table>
 
 
 

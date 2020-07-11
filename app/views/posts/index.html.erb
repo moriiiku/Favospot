@@ -2,25 +2,25 @@
 <div class="row">
   <div class="col-md-10">
 
-
-
-
-
-        <section class="hero is-success">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                <div class="col-3 offset-4 table-active h4 text-center">PICK UP
-                </div>
-              </h1>
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <div class="col-3 offset-4 table-active h4 text-center">NEW
             </div>
-          </div>
-        </section>
+          </h1>
+        </div>
+      </div>
+    </section>
 
     <div class="col-12">
       <div class="col">
         <div class="row">
+        <% i = 0 %>
           <% @posts.each do |post| %>
+            <% if i >= 5 %>
+              <% break %>
+            <% end %>
             <div class="card">
               <div class="card-imag">
                 <div class="float-left" , style="padding: 1px;">
@@ -28,6 +28,7 @@
                     <% post.post_images.each do |img| %>
                       <div class="float-left" , style="padding: 10px;">
                         <%= attachment_image_tag img, :post_image, fallback: "noimage.png", size: '170x100' %></div>
+                          <% i = i+1 %>
                     <% end %>
                   <% end %>
                 </div>
@@ -37,65 +38,60 @@
         </div>
       </div>
     </div>
-<br>
-<br>
-
-        <section class="hero is-success">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                <div class="col-5 offset-3 table-active h4 text-center">What's Favospot?
-                </div>
-              </h1>
+    <br>
+    <br>
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <div class="col-5 offset-3 table-active h4 text-center">What's Favospot?
             </div>
-          </div>
-        </section>
+          </h1>
+        </div>
+      </div>
+    </section>
 
     <div class="row", style="margin-bottom: 30px;">
-            <div class="col-12 top-visual">
-              <div class="top-visual-content mx-auto">
-                <span class="text-center">
-                  
-                    <% if user_signed_in? %>
-                        <h5>
-                          <br>
-                          Favospotはあなたの ”お気に入りの場所” を紹介するサイトです。<br>
-                          何気ない景色や公園、道端の花壇など<br>あなたの ”お気に入りの場所” はきっと誰かも好きな場所です。<br>
-                          
-                        </h5>
-                        <p>ヘッダーの New spot から<br>あなたのお気に入りの場所を教えてください。
-                        </p>
-                    <% else %>
-                        <h5>
-                          <br>
-                          Favospotはあなたの ”お気に入りの場所” を紹介するサイトです。<br>
-                          何気ない景色や公園、道端の花壇など<br>写あなたの ”お気に入りの場所” はきっと誰かも好きな場所です。<br>
-                        </h5>
-                        <p>投稿、コメントにつきましては
-                        <br>新規登録より会員登録をお願いいたします。
-                        </p>
-                      <% end %>
-                  
-                  </span>
-              </div>
+      <div class="col-12 top-visual">
+        <div class="top-visual-content mx-auto">
+          <span class="text-center">
+            <% if user_signed_in? %>
+              <h5>
+                <br>
+                Favospotはあなたの ”お気に入りの場所” を紹介するサイトです。<br>
+                何気ない景色や公園、道端の花壇など<br>あなたの ”お気に入りの場所” はきっと誰かも好きな場所です。<br>
+              </h5>
+              <p>ヘッダーの New spot から<br>あなたのお気に入りの場所を教えてください。
+              </p>
+            <% else %>
+              <h5>
+                <br>
+                Favospotはあなたの ”お気に入りの場所” を紹介するサイトです。<br>
+                何気ない景色や公園、道端の花壇など<br>あなたの ”お気に入りの場所” はきっと誰かも好きな場所です。<br>
+              </h5>
+              <p>投稿、コメントにつきましては<br>
+                 新規登録より会員登録をお願いいたします。
+              </p>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <div class="col-3 offset-4 table-active h4 text-center">ALL
             </div>
-          </div>
+          </h1>
+        </div>
+      </div>
+    </section>
 
-
-<br>
-
-          <section class="hero is-success">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                <div class="col-3 offset-4 table-active h4 text-center">NEW
-                </div>
-              </h1>
-            </div>
-          </div>
-        </section>
-
-        <div class="col-12">
+    <div class="col-12">
       <div class="col">
         <div class="row">
           <% @posts.each do |post| %>
@@ -115,15 +111,22 @@
         </div>
       </div>
     </div>
-<br>
+    <br>
 
 
-    </div>
-    <div class="row">
-          <%= render 'posts/sidebar', user: @user, post: @post %>
-    </div>
-
+  </div>
+  <div class="row">
+        <%= render 'posts/sidebar', user: @user, post: @post %>
+  </div>
 </div>
 
 
-<h1>Posts#index</h1>
+<table class="table is-fullwidth">
+  <tr>
+    <td>
+      
+    </td>
+  </tr>
+</table>
+
+

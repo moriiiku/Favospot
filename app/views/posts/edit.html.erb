@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-3 offset-3 table-active h4 text-center">SPOT EDIT</div>
+    <div class="col-3 offset-1 table-active h4 text-center">SPOT EDIT</div>
   </div>
 
   <section class="section">
@@ -16,7 +16,7 @@
               <div class="container">
 
                 <% @post.post_images.each do |img| %>
-                  <%= attachment_image_tag img, :post_image, fallback: "noimage.png", size: '400x320' %>
+                  <%= attachment_image_tag img, :post_image, fallback: "noimage.png", class: "postimage" %>
                     <%= form_for(img,url:post_post_image_path(@post,img), method: :patch) do |f| %>
                     <% end %>
                   <% end %>
@@ -44,6 +44,14 @@
 
                     <%= f.submit '投稿', class: "button is-success" %>
                   <% end %>
+
+                  <td>
+                        <div class="float-right">
+                          <% if current_user && @post.user.id == current_user.id %>
+                            <%= link_to "戻る", post_path(@post), class: "button is-success" %>
+                          <% end %>
+                        </div>
+                      </td>
                 </div>
               </section>
         </div>
@@ -55,4 +63,15 @@
 
 <h1>Posts#edit</h1>
 <p>Find me in app/views/posts/edit.html.erb</p>
+
+
+<table class="table is-fullwidth">
+  <tr>
+    <td>
+      
+    </td>
+  </tr>
+</table>
+
+
 

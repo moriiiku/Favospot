@@ -14,7 +14,7 @@ ja:
         post_image: 投稿画像
       user:
         title: タイトル
-        name: 名前
+        username: 名前
         email: メールアドレス
         current_password: 現在のパスワード
         password: パスワード

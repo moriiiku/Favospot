@@ -16,6 +16,17 @@
 @charset "UTF-8";
 @import "bootstrap";
 
+
+@font-face{
+  font-family: "sawarabi";
+  src: asset_url('sawarabi-gothic-medium.otf') format('truetype');
+ }
+
+ body{
+  font-family: 'sawarabi';
+  color: #45484d;
+}
+
 .profile_image {
  border-radius: 50%;
 }

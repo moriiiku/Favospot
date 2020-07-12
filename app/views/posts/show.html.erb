@@ -121,7 +121,7 @@
             <%= form_for [@post, @comment] do |f| %>
               <div class="row">
                 <div class="col-sm-12">
-                  <%= f.text_area :body, rows:'2', class: "form-control",placeholder: "コメントをここに" %>
+                  <%= f.text_area :body, rows:'2', class: "form-control",placeholder: "コメント..." %>
                 </div>
               </div>
               <%= f.submit "送信する", class: "button is-success" %>

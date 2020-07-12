@@ -10,6 +10,7 @@ ja:
               too_short: "は%{count}文字以上に設定して下さい。"
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
+              not_found: "が見つかりません。"
             password:
               taken: "は既に使用されています。"
               blank: "が入力されていません。"
@@ -83,6 +84,8 @@ ja:
       user:
         invalid: "ログインに失敗しました"
         not_found_in_database: "登録されていないメールアドレスです"
+        unauthenticated: "ログインしてください"
+        already_authenticated: "認証済みです"
     shared:
       links:
         back: "戻る"

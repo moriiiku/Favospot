@@ -6,46 +6,36 @@
 
 	<section class="section">
     	<div class="container">
-      		<div class="columns is-centered">
-        		<div class="column is-6">
+    		<div class="columns is-centered">
+      		<div class="column is-6">
 
-					<% @post.post_images.each do |img| %>
-		              <%= attachment_image_tag img, :post_image, fallback: "noimage.png", class: "postimage" %>
-		            <%= form_for(img,url:post_post_image_path(@post,img), method: :patch) do |f| %>
-		              <div class="field">
-		                <%= f.attachment_field :post_image, class: "input" %>
-		              </div>
-		                <%= f.submit '写真の変更', class: "button is-success" %>
-		            <% end %>
-		          <% end %>
-		          <% if current_user && @post.user.id == current_user.id %>
-                    <%= link_to "編集に戻る", edit_post_path(@post), class: "button is-success" %>
-                  <% end %>
+		      	<% @post.post_images.each do |img| %>
+              <%= attachment_image_tag img, :post_image, fallback: "noimage.png", class: "postimage" %>
+	            <%= form_for(img,url:post_post_image_path(@post,img), method: :patch) do |f| %>
+	              <div class="field">
+	                <%= f.attachment_field :post_image, class: "input" %>
+	              </div>
+	                <%= f.submit '写真の変更', class: "button is-success" %>
+	            <% end %>
+            <% end %>
+	          <% if current_user && @post.user.id == current_user.id %>
+              <%= link_to "編集に戻る", edit_post_path(@post), class: "button is-success" %>
+            <% end %>
 
-                  <td>
-                        <div class="float-right">
-                          <% if current_user && @post.user.id == current_user.id %>
-                            <%= link_to "投稿に戻る", post_path(@post), class: "button is-success" %>
-                          <% end %>
-                        </div>
-                      </td>
+            <td>
+              <div class="float-right">
+                <% if current_user && @post.user.id == current_user.id %>
+                  <%= link_to "投稿に戻る", post_path(@post), class: "button is-success" %>
+                <% end %>
+              </div>
+            </td>
 
-				</div>
-      		</div>
+			    </div>
+    		</div>
     	</div>
   	</section>
 </div>
 
 
 
-<h1>Post_images#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
-
-
-<table class="table is-fullwidth">
-  <tr>
-    <td>
-    </td>
-  </tr>
-</table>
 

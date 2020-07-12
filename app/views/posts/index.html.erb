@@ -27,7 +27,7 @@
                   <%= link_to post_path(post) do %>
                     <% post.post_images.each do |img| %>
                       <div class="float-left" , style="padding: 10px;">
-                        <%= attachment_image_tag img, :post_image, fallback: "noimage.png", size: '170x100' %></div>
+                        <%= attachment_image_tag img, :post_image, fallback: "noimage.png", size: '150x80' %></div>
                           <% i = i+1 %>
                     <% end %>
                   <% end %>
@@ -119,14 +119,4 @@
         <%= render 'posts/sidebar', user: @user, post: @post %>
   </div>
 </div>
-
-
-<table class="table is-fullwidth">
-  <tr>
-    <td>
-      
-    </td>
-  </tr>
-</table>
-
 

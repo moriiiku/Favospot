@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-10">
     <section class="hero is-success">
-      <div class="hero-body">
+
         <div class="container">
-          <div class="row">
+          <div class="col-3 row">
             <strong><h2><%= @post.title %></h2></strong>
           </div>
         </div>
-      </div>
+
     </section>
 
 
@@ -25,16 +25,23 @@
                   <% end %>
 
                   <td> <!-- いいね機能 -->
-                    <% if current_user.already_favorited?(@post) %>
-                      <%= link_to post_favorites_path(@post), method: :delete do %>
-                        <i class="fas fa-heart"></i>
+                    <% if user_signed_in? %>
+                      <% if current_user.already_favorited?(@post) %>
+                        <%= link_to post_favorites_path(@post), method: :delete do %>
+                          <i class="fas fa-heart"></i>
+                        <% end %>
+                      <%= @post.favorites.count %>
+                      <% else %>
+                        <%= link_to post_favorites_path(@post), method: :post do %>
+                          <i class="far fa-heart"></i>
+                        <% end %>
+                      <%= @post.favorites.count %>
                       <% end %>
-                    <%= @post.favorites.count %>
                     <% else %>
-                      <%= link_to post_favorites_path(@post), method: :post do %>
-                        <i class="far fa-heart"></i>
+                      <%= link_to user_session_path do %>
+                         <i class="fas fa-heart"></i>
+                         <%= @post.favorites.count %>
                       <% end %>
-                    <%= @post.favorites.count %>
                     <% end %>
                   </td>
 
@@ -98,15 +105,4 @@
     </div>
   </div>
 </div>
-
-
-<table class="table is-fullwidth">
-  <tr>
-    <td>
-      
-    </td>
-  </tr>
-</table>
-
-
 

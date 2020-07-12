@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @users = User.all
+    @users = User.all.order(created_at: :desc)
   end
 
   def top

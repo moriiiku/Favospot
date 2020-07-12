@@ -44,12 +44,12 @@
               <%= f.text_area :profile, style: "width: 60%; height: 120px;", class: "textarea" %>
             </div>
 
-            <div class="col-1 offset-3">
+            <div class="offset-3">
             <%= f.submit "更新", class: "button is-success" %>
             </div>
 
-            <div class="col-4 offset-6">
-              <%= link_to "退会する", destroy_user_path, method: :delete, data: {confirm: "退会すると全てのデータが削除されます。よろしいでしょうか？"}, class: "btn btn-danger btn-block" %>
+            <div class="col-3 offset-8">
+              <%= link_to "退会する", destroy_user_path, method: :delete, data: {confirm: "退会すると全てのデータが削除されます。よろしいでしょうか？"}, class: "btn btn-danger btn-sm" %>
              </div>
           <% end %>
         </div>

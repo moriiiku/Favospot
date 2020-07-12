@@ -13,19 +13,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-
-
-
-  get 'post_image/edit' #これは削除
-
-  get 'posts/all' #これは削除
   post 'contacts/new'
-
-  	get 'top/infomation'
-  	get 'top/contact' # 消すよ
+  get 'top/infomation'
 	root 'posts#index'
 
-
-  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

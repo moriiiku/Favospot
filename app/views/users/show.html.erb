@@ -1,7 +1,6 @@
 
 <div class="row">
   <div class="col-md-10">
-
     <section class="hero is-success">
       <div class="hero-body">
         <div class="container">
@@ -11,17 +10,14 @@
         </div>
       </div>
     </section>
-
     <section class="section">
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-8">
             <div class="columns is-centered">
-
               <div class="column is-4">
                 <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
                   <%= attachment_image_tag @user, :profile_image, fallback: "noimage.png", class: "profile_image is-rounded",  format: 'jpeg', class: " pull-left profile-img", fallback: "noimage.png", size:"100x100" %>
-
                   <% if @user.id == current_user.id %>
                     <div class="float-right">
                       <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
@@ -29,33 +25,27 @@
                   <% end %>
                 </figure>
               </div>
-                <tr>
-                  <td>
-                    <strong><%= @user.user_name %></strong>
-                  </td>
-                </tr>
-
-
-
-                <div class="column is-8">
-                  <table class="table is-fullwidth">
-                      <tr>
-                        <td>
-                          <%= simple_format @user.profile %>
-                        </td>
-                        <td>
-                        </td>
-                      </tr>
-                  </table>
-                </div>
-
+              <tr>
+                <td>
+                  <strong><%= @user.user_name %></strong>
+                </td>
+              </tr>
+              <div class="column is-8">
+                <table class="table is-fullwidth">
+                    <tr>
+                      <td>
+                        <%= simple_format @user.profile %>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-
     <section class="hero is-success">
       <div class="hero-body">
         <div class="container">
@@ -73,74 +63,55 @@
             <div class="column is-4">
               <div class="card">
                 <div class="card-image">
-
                     <%= link_to post_path(post) do %>
                       <% post.post_images.each do |img| %>
-
                         <%= attachment_image_tag img, :post_image, fallback: "noimage.png", class: "postimage" %>
                       <% end %>
                     <% end %>
-
-
                     <div class="media">
-                        <div class="media-content">
-
-
-                          <td> <!-- いいね機能 -->
-                            <% if current_user.already_favorited?(post) %>
-                              <%= link_to post_favorites_path(post), method: :delete do %>
-                                <i class="fas fa-heart" style="color: red;"></i>
-                              <% end %>
-                              <%= post.favorites.count %>
-
-                            <% else %>
-                              <%= link_to post_favorites_path(post), method: :post do %>
-                                <i class="far fa-heart" style="color: red;"></i>
-
-                              <% end %>
-                              <%= post.favorites.count %>
+                      <div class="media-content">
+                        <td> <!-- いいね機能 -->
+                          <% if current_user.already_favorited?(post) %>
+                            <%= link_to post_favorites_path(post), method: :delete do %>
+                              <i class="fas fa-heart" style="color: red;"></i>
                             <% end %>
+                            <%= post.favorites.count %>
 
-                            <i class="fa fa-comment"  style="color: gray;"></i>
-                    <a class="comments"><%= post.comments.count %></a>
-                          </td>
+                          <% else %>
+                            <%= link_to post_favorites_path(post), method: :post do %>
+                              <i class="far fa-heart" style="color: red;"></i>
 
+                            <% end %>
+                            <%= post.favorites.count %>
+                          <% end %>
 
-
-                          </div>
+                          <i class="fa fa-comment"  style="color: gray;"></i>
+                          <a class="comments"><%= post.comments.count %></a>
+                        </td>
+                      </div>
                     </div>
+                    <div class="media-content">
 
-                        
-                        <div class="media-content">
-                          
+                      <% if @user.id == current_user.id %>
+                        <%= link_to edit_post_path(post), class: "panel-block" do %>
+                          <span class="panel-icon">
+                            <i class="fas fa-pencil-alt" style="color: gray;">編集する</i>
+                          </span>
 
-                            <% if @user.id == current_user.id %>
-                              <%= link_to edit_post_path(post), class: "panel-block" do %>
-                                <span class="panel-icon">
-                                  <i class="fas fa-pencil-alt" style="color: gray;">編集する</i>
-                                </span>
-
-                              <% end %>
-                              <%= link_to post_path(post), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
-                                <span class="panel-icon">
-                                  <i class="fas fa-trash" style="color: gray;">削除する</i>
-                                </span>
-                              <% end %>
-                            <% end %>
-                        </div>
-
-
-
-
-
-
-                <div class="card-content">
-                  
-                  <div class="content">
-                    <time><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
-                  </div>
+                        <% end %>
+                        <%= link_to post_path(post), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                          <span class="panel-icon">
+                            <i class="fas fa-trash" style="color: gray;">削除する</i>
+                          </span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="card-content">
+                      <div class="content">
+                        <time><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+                      </div>
+                    </div>
                 </div>
-
               </div>
             </div>
           <% end %>

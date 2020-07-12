@@ -1,54 +1,39 @@
 <div class="row">
   <div class="col-md-8">
-
     <div class="container">
       <div class="row">
-            <div class="col-4 offset-1 table-active h4 text-center">NEWSPOT</div>
+        <div class="col-4 offset-1 table-active h4 text-center">NEWSPOT</div>
       </div>
 
-        <%= render 'error', post: @post %>
+      <%= render 'error', post: @post %>
 
-        
+      <section class="section">
+        <div class="container">
 
-          <section class="section">
-            <div class="container">
-
-
-                  <%= form_for @post do |f| %>
-                    <div class="field">
-                      <%= f.label :title, "SPOT名", style: "width: 15%;", class: "label" %>
-                      <%= f.text_field :title, style: "width: 45%;", class: "input", placeholder: "タイトル"%>
-                    </div>
-
-                    <%= f.fields_for :post_images do |img| %>
-
-                        <div class="field">
-                          <%= img.label :post_image, "PHOTO", style: "width: 15%;", class: "label" %>
-                          <%= img.attachment_field :post_image, class: "input" %>
-                        </div>
-                      <% end %>
-
-                    <div class="field">
-                      <%= f.label :body, "説明文", style: "width: 15%;", class: "label" %>
-                      <%= f.text_area :body, style: "width: 60%; height: 120px;", class: "textarea", placeholder: "本文" %>
-                    </div>
-
-                    <div class="field">
-                      <%= f.label :place, "所在地", style: "width: 15%;", class: "label" %>
-                      <%= f.text_field :place, style: "width: 60%; height: 30px;", class: "textfield", placeholder: "東京駅徒歩○○分など" %>
-                    </div>
-
-                    <%= f.submit '投稿', class: "button is-success" %>
-
-                  <% end %>
-
-
+          <%= form_for @post do |f| %>
+            <div class="field">
+              <%= f.label :title, "SPOT名", style: "width: 15%;", class: "label" %>
+              <%= f.text_field :title, style: "width: 45%;", class: "input", placeholder: "タイトル"%>
             </div>
-          </section>
+            <%= f.fields_for :post_images do |img| %>
+              <div class="field">
+                <%= img.label :post_image, "PHOTO", style: "width: 15%;", class: "label" %>
+                <%= img.attachment_field :post_image, class: "input" %>
+              </div>
+            <% end %>
+            <div class="field">
+              <%= f.label :body, "説明文", style: "width: 15%;", class: "label" %>
+              <%= f.text_area :body, style: "width: 60%; height: 120px;", class: "textarea", placeholder: "本文" %>
+            </div>
+            <div class="field">
+              <%= f.label :place, "所在地", style: "width: 15%;", class: "label" %>
+              <%= f.text_field :place, style: "width: 60%; height: 30px;", class: "textfield", placeholder: "東京駅徒歩○○分など" %>
+            </div>
+            <%= f.submit '投稿', class: "button is-success" %>
+          <% end %>
         </div>
-  </div>
-
-
+      </section>
+    </div>
   </div>
   <div class="row">
       <%= render 'posts/sidebar', user: @user, post: @post %>

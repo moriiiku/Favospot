@@ -1,66 +1,54 @@
 <div class="row">
   <div class="col-md-10">
     <section class="hero is-success">
-
-        <div class="container">
-          <div class="col-12 row">
-            <strong><h2><%= @post.title %></h2></strong>
-          </div>
+      <div class="container">
+        <div class="col-12 row">
+          <strong><h2><%= @post.title %></h2></strong>
         </div>
-
+      </div>
     </section>
-
-
     <section class="section">
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-7">
             <div class="card">
               <div class="card-image">
-
-                  <% @post.post_images.each do |img| %>
+                <% @post.post_images.each do |img| %>
                   <div class="postimage">
                     <%= attachment_image_tag img, :post_image, class: "postimage" %>
                   </div>
-                  <% end %>
-
-                   <td><!-- いいね機能 -->
+                <% end %>
+                  <td><!-- いいね機能 -->
                     <% if user_signed_in? %>
                       <% if current_user.already_favorited?(@post) %>
                         <%= link_to post_favorites_path(@post), method: :delete do %>
                           <i class="fas fa-heart"  style="color: red;"></i>
                         <% end %>
-                      <%= @post.favorites.count %>
+                        <%= @post.favorites.count %>
                       <% else %>
                         <%= link_to post_favorites_path(@post), method: :post do %>
                           <i class="far fa-heart"  style="color: red;"></i>
                         <% end %>
-                      <%= @post.favorites.count %>
+                        <%= @post.favorites.count %>
                       <% end %>
                     <% else %>
                       <%= link_to user_session_path do %>
-                         <i class="fas fa-heart"  style="color: red;"></i>
-
+                        <i class="fas fa-heart"  style="color: red;"></i>
                       <% end %>
-                      <%= @post.favorites.count %>
+                        <%= @post.favorites.count %>
                     <% end %>
-
                     <i class="fa fa-comment"  style="color: gray;"></i>
                     <a class="comments"><%= @post.comments.count %></a>
                   </td>
-
                   <td>
                     <div class="float-right">
                       <% if current_user && @post.user.id == current_user.id %>
                         <%= link_to "写真の変更", edit_post_post_image_path(@post), class: "button is-success" %>
-
                         <%= link_to "編集", edit_post_path(@post), class: "button is-success" %>
-
                         <%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "button is-success"  %>
                       <% end %>
                     </div>
                   </td>
-
               </div>
               <div class="card-content">
                 <div class="content">
@@ -91,7 +79,6 @@
             </div>
           </div>
         </div>
-
         <div class="container">
           <article class="panel is-link">
             Favospot by<%= link_to user_path(@post.user), class: "panel-block" do %>
@@ -100,15 +87,7 @@
               </span>
             <% end %>さん
           </article>
-
-
-
-                <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
-                  
-
-
-
-
+          <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
           <table>
             <% @post.comments.each do |post_comment| %>
               <tr class="comment">
@@ -116,64 +95,41 @@
                   <div class="comment-avatar">
                     <div class="avatar">
                       <%= attachment_image_tag post_comment.user, :profile_image, fallback: "noimage.png", class: "profile_image is-rounded",  format: 'jpeg', class: " pull-left profile-img", fallback: "noimage.png", size:"60x60" %>
-
                     </div>
                   </div>
                   <div class="comment-text">
-                    
-                      <span>by <%= post_comment.user.user_name %></span>
-                      <span>
-                        <span><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
-                      </span>
-                    
-                      <td class="col-12"><%= simple_format post_comment.body %></td>
+                    <span>by <%= post_comment.user.user_name %></span>
+                    <span><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
+                    <td class="col-12"><%= simple_format post_comment.body %></td>
                   </div>
                 </td>
-
-                  <!-- 削除ボタン -->
-                  <% if post_comment.user == current_user%>
-                    <td>
-                      <div class="offset-3">
+                <!-- 削除ボタン -->
+                <% if post_comment.user == current_user%>
+                  <td>
+                    <div class="offset-3">
                       <%= link_to post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger btn-sm" do %>
-                      <i class="fas fa-trash" style="color: white;" ></i>
+                        <i class="fas fa-trash" style="color: white;" ></i>
                       <% end %>
-
-
-  
-
-
-
                     </div>
-                    </td>
-                  <% end %>
-
-
+                  </td>
+                <% end %>
               </tr >
             <% end %>
-
           </table>
- 
-
-
           <!-- 送信ボタン -->
-        <% if user_signed_in? %>
-          <%= form_for [@post, @comment] do |f| %>
-            <div class="row">
-              <div class="col-sm-12">
-                <%= f.text_area :body, rows:'2', class: "form-control",placeholder: "コメントをここに" %>
+          <% if user_signed_in? %>
+            <%= form_for [@post, @comment] do |f| %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <%= f.text_area :body, rows:'2', class: "form-control",placeholder: "コメントをここに" %>
+                </div>
               </div>
-            </div>
-            <%= f.submit "送信する", class: "button is-success" %>
+              <%= f.submit "送信する", class: "button is-success" %>
+            <% end %>
           <% end %>
-        <% end %>
-
-
         </div>
       </div>
     </section>
-
-
-
     <div class="row">
           <%= render 'posts/sidebar', user: @user, post: @post %>
     </div>

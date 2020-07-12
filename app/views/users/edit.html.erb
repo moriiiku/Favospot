@@ -8,7 +8,6 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-6">
-
           <% if @user.errors.any? %>
             <div class="notification is-danger">
               <h3><%= pluralize(@user.errors.count, "error") %></h3>
@@ -19,35 +18,27 @@
               </ul>
             </div>
           <% end %>
-
           <%= form_for @user do |f| %>
-
             <div class="field">
-
               <%= f.label :　, "", style: "width: 22%;", class: "label" %>
               <%= attachment_image_tag current_user, :profile_image, fallback: "noimage.png", size: '100x100' %>
               <%= f.attachment_field :profile_image, class: "input" %>
             </div>
-
             <div class="field">
               <%= f.label :username, "ユーザー名", style: "width: 22%;", class: "label" %>
               <%= f.text_field :user_name, style: "width: 45%;", class: "input" %>
             </div>
-
             <div class="field">
               <%= f.label :email, "メールアドレス", style: "width: 22%;", class: "label" %>
               <%= f.email_field :email, style: "width: 45%;", class: "input" %>
             </div>
-
             <div class="field">
               <%= f.label :profile, "プロフィール", style: "width: 22%;", class: "label" %>
               <%= f.text_area :profile, style: "width: 60%; height: 120px;", class: "textarea" %>
             </div>
-
             <div class="offset-3">
             <%= f.submit "更新", class: "button is-success" %>
             </div>
-
             <div class="col-3 offset-8">
               <%= link_to "退会する", destroy_user_path, method: :delete, data: {confirm: "退会すると全てのデータが削除されます。よろしいでしょうか？"}, class: "btn btn-danger btn-sm" %>
              </div>

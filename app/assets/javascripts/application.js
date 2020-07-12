@@ -19,9 +19,6 @@
 //= require jquery_ujs
 //= require_tree .
 
-
-
-
 $(function() {
   $('.menu-trigger').on('click', function(event) {
     $(this).toggleClass('active');

@@ -1,22 +1,15 @@
-
 <div class="row">
   <div class="col-md-10">
-
-
-
-
-
-        <section class="hero is-success">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                <div class="col-3 offset-4 table-active h4 text-center">PICK UP
-                </div>
-              </h1>
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <div class="col-3 offset-4 table-active h4 text-center">PICK UP
             </div>
-          </div>
-        </section>
-
+          </h1>
+        </div>
+      </div>
+    </section>
     <div class="col-12">
       <div class="col">
         <div class="row">
@@ -37,65 +30,55 @@
         </div>
       </div>
     </div>
-<br>
-<br>
-
-        <section class="hero is-success">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                <div class="col-5 offset-3 table-active h4 text-center">What's Favospot?
-                </div>
-              </h1>
+    <br><br>
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <div class="col-5 offset-3 table-active h4 text-center">What's Favospot?
             </div>
-          </div>
-        </section>
+          </h1>
+        </div>
+      </div>
+    </section>
 
     <div class="row", style="margin-bottom: 30px;">
-            <div class="col-12 top-visual">
-              <div class="top-visual-content mx-auto">
-                <span class="text-center">
-                  
-                    <% if user_signed_in? %>
-                        <h5>
-                          <br>
-                          珍妙・奇妙な観光地・珍スポット（B級スポット・パラダイス）を<br>
-                          珍スポットハンター・麻理が探訪しレポートするブログ。<br>写真・地図・詳細情報つきで、観光ガイドとしても役立ちます。<br>
-                          
-                        </h5>
-                        <p>ヘッダーの New spot から<br>あなたのお気に入りの場所を教えてください。
-                        </p>
-                    <% else %>
-                        <h5>
-                          <br>
-                          珍妙・奇妙な観光地・珍スポット（B級スポット・パラダイス）を<br>
-                          珍スポットハンター・麻理が探訪しレポートするブログ。<br>写真・地図・詳細情報つきで、観光ガイドとしても役立ちます。<br>
-                        </h5>
-                        <p>投稿、コメントにつきましては
-                        <br>新規登録より会員登録をお願いいたします。
-                        </p>
-                      <% end %>
-                  
-                  </span>
-              </div>
-            </div>
-          </div>
+      <div class="col-12 top-visual">
+        <div class="top-visual-content mx-auto">
+          <span class="text-center">
+            <% if user_signed_in? %>
+              <h5>
+                <br>
+                珍妙・奇妙な観光地・珍スポット（B級スポット・パラダイス）を<br>
+                珍スポットハンター・麻理が探訪しレポートするブログ。<br>
+              </h5>
+              <p>ヘッダーの New spot から<br>あなたのお気に入りの場所を教えてください。</p>
+            <% else %>
+              <h5>
+                <br>
+                珍妙・奇妙な観光地・珍スポット（B級スポット・パラダイス）を<br>
+                珍スポットハンター・麻理が探訪しレポートするブログ。<br>写真・地図・詳細情報つきで、観光ガイドとしても役立ちます。<br>
+              </h5>
+              <p>投稿、コメントにつきましては
+              <br>新規登録より会員登録をお願いいたします。
+              </p>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <section class="hero is-success">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <div class="col-3 offset-4 table-active h4 text-center">NEW</div>
+          </h1>
+        </div>
+      </div>
+    </section>
 
-
-<br>
-
-          <section class="hero is-success">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                <div class="col-3 offset-4 table-active h4 text-center">NEW
-                </div>
-              </h1>
-            </div>
-          </div>
-        </section>
-
-        <div class="col-12">
+    <div class="col-12">
       <div class="col">
         <div class="row">
           <% @posts.each do |post| %>
@@ -115,15 +98,9 @@
         </div>
       </div>
     </div>
-<br>
-
-
-    </div>
+    <br>
+  </div>
     <div class="row">
           <%= render 'posts/sidebar', user: @user, post: @post %>
     </div>
-
 </div>
-
-
-<h1>Posts#index</h1>

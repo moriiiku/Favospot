@@ -86,7 +86,9 @@
                 <i class="fas fa-user" style="color: gray;" aria-hidden="true"><%= @post.user.user_name %></i>
               </span>
             <% end %>さん
-          </article>
+          </article><br><br>
+
+          <div class="col-3 offset-4 table-active h5 text-center">COMMENT</div>
           <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
           <table>
             <% @post.comments.each do |post_comment| %>
@@ -116,6 +118,7 @@
               </tr >
             <% end %>
           </table>
+          <br>
           <!-- 送信ボタン -->
           <% if user_signed_in? %>
             <%= form_for [@post, @comment] do |f| %>
